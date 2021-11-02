@@ -54,6 +54,9 @@ class Tracker:
         """
         for track in self.tracks:
             track.predict(self.kf)
+            # print(type(track.predict(self.kf)))
+            # print(track.predict(self.kf))
+            # exit()
 
     def update(self, detections):
         """Perform measurement update and track management.
@@ -77,6 +80,7 @@ class Tracker:
         for detection_idx in unmatched_detections:
             self._initiate_track(detections[detection_idx])
         self.tracks = [t for t in self.tracks if not t.is_deleted()]
+        
 
         # Update distance metric.
         active_targets = [t.track_id for t in self.tracks if t.is_confirmed()]

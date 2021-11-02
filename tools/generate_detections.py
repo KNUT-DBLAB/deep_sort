@@ -5,6 +5,16 @@ import argparse
 import numpy as np
 import cv2
 import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
+
+"""
+python tools/generate_detections.py \
+    --mo
+    del=resources/networks/mars-small128.pb \
+    --mot_dir=./MOT16/train \
+    --output_dir=./resources/detections/MOT16_train
+"""
 
 
 def _run_in_batches(f, data_dict, out, batch_size):

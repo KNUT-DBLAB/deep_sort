@@ -12,6 +12,14 @@ from application_util import visualization
 DEFAULT_UPDATE_MS = 20
 
 
+""" execute tracker
+
+python show_results.py \
+    --sequence_dir=../../../dataset/MOT16/test/MOT16-06 \
+    --result_file=../result_cnn_sort_01.txt \
+    --detection_file=../resources/detections/MOT16_POI_test/MOT16-06.npy
+"""
+
 def run(sequence_dir, result_file, show_false_alarms=False, detection_file=None,
         update_ms=None, video_filename=None):
     """Run tracking result visualization.

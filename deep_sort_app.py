@@ -13,6 +13,16 @@ from deep_sort import nn_matching
 from deep_sort.detection import Detection
 from deep_sort.tracker import Tracker
 
+""" execute tracker
+
+python deep_sort_app.py \
+    --sequence_dir=../../../dataset/MOT16/test/MOT16-06 \
+    --detection_file=../resources/detections/MOT16_POI_test/MOT16-06.npy \
+    --min_confidence=0.3 \
+    --nn_budget=100 \
+    --display=False
+"""
+
 
 def gather_sequence_info(sequence_dir, detection_file):
     """Gather sequence information, such as image filenames, detections,
@@ -119,6 +129,8 @@ def create_detections(detection_mat, frame_idx, min_height=0):
 
     detection_list = []
     for row in detection_mat[mask]:
+        print(row.shape)
+        print(row)
         bbox, confidence, feature = row[2:6], row[6], row[10:]
         if bbox[3] < min_height:
             continue
@@ -231,7 +243,7 @@ def parse_args():
     parser.add_argument(
         "--output_file", help="Path to the tracking output file. This file will"
         " contain the tracking results on completion.",
-        default="/tmp/hypotheses.txt")
+        default="../result_cnn_sort_01")
     parser.add_argument(
         "--min_confidence", help="Detection confidence threshold. Disregard "
         "all detections that have a confidence lower than this value.",
